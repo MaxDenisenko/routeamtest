@@ -16,15 +16,15 @@ const Pagination = ({ arrResult, loading, currentPage, setCurrentPage }) => {
     }
 
     const paginate = (pageNumber) => {
-            setCurrentPage(pageNumber)
+        setCurrentPage(pageNumber)
     }
     const paginateDecrement = (pageNumber) => {
-            if( pageNumber > 1){
-                setCurrentPage(--pageNumber)
-            }
+        if (pageNumber > 1) {
+            setCurrentPage(--pageNumber)
+        }
     }
     const paginateIncrement = (pageNumber) => {
-        if(pageNumber < pageNumbers.length+1){
+        if (pageNumber < pageNumbers.length + 1) {
             setCurrentPage(pageNumber++)
         }
     }
@@ -35,21 +35,21 @@ const Pagination = ({ arrResult, loading, currentPage, setCurrentPage }) => {
         <div className='cards'>
             <ListCard arrResult={currentCards} loading={loading} />
 
-            {!loading && <div className="paginations">
+            {(pageNumbers.length > 0 && !loading) && <div className="paginations">
                 <ul className="pagination">
-                    <button className="btn_pagination" onClick={()=> paginateDecrement(currentPage)}>&lt;</button>
-                    {!loading && pageNumbers.map(number => (
+                    <button className="btn_pagination" onClick={() => paginateDecrement(currentPage)}>&lt;</button>
+                    {pageNumbers.map(number => (
                         <li key={number}>
-                            <button className={classNames("btn_pagination",  { "page-link-active": number === currentPage })} onClick={() => paginate(number)}>
+                            <button className={classNames("btn_pagination", { "page-link-active": number === currentPage })} onClick={() => paginate(number)}>
                                 {number}
                             </button>
                         </li>
                     ))
                     }
-                    <button className="btn_pagination" onClick={()=> paginateIncrement(currentPage+1)}>&gt;</button>
+                    <button className="btn_pagination" onClick={() => paginateIncrement(currentPage + 1)}>&gt;</button>
                 </ul>
             </div>}
-        </div> 
+        </div>
     </>
 
     )
