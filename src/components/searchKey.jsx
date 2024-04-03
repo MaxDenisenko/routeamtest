@@ -2,15 +2,13 @@ import React from "react";
 
 const SearchKey = ({searchKey, setSearchKey, getData, setLoading, setArrResult}) => {
 
-    function LoadData (searchKey) {
+    async function LoadData (searchKey) {
         setLoading(true)
-        getData(searchKey).then(data => saveData(data.items))
-        
-        setLoading(false)
+        await getData(searchKey).then(data => saveData(data.items))
     }
     function saveData (result) {
-        console.log(result);
         setArrResult(result)
+        setLoading(false)
     }
 
     return <>
