@@ -10,7 +10,6 @@ const SearchKey = ({ arrResult, searchKey, setSearchKey, getData, loading, setLo
     useEffect(() => {
         const key = history.location.search.substring(1)
         const filterKey = qs.parse(key)
-        console.log(filterKey);
         if (filterKey.search) {
             setSearchKey(filterKey.search)
             setCurrentPage(filterKey.currentPage)
@@ -38,14 +37,15 @@ const SearchKey = ({ arrResult, searchKey, setSearchKey, getData, loading, setLo
         setLoading(false)
     }
 
-    return <>
-
-        <input placeholder="Начните вводить текст для поиска (не менее трех символов)" value={searchKey} onChange={event => setSearchKey(event.target.value)} />
-        <button onClick={() => LoadData(searchKey)} disabled={searchKey.length < 3 ? true : false }>Поиск</button>
-        <div>
+    return <div className="search">
+        <div className="searchField">
+            <input className="input" placeholder="Начните вводить текст для поиска (не менее трех символов)" value={searchKey} onChange={event => setSearchKey(event.target.value)} />
+            <button className="btn" onClick={() => LoadData(searchKey)} disabled={searchKey.length < 3 ? true : false}>Поиск</button>
+        </div>
+        <div className="listCard">
             <Pagination arrResult={arrResult} loading={loading} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
-    </>
+    </div>
 
 }
 export default SearchKey
